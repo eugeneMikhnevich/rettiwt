@@ -8,14 +8,21 @@
     <groupId>com.training.rettiwt</groupId>
     <artifactId>rettiwt-app</artifactId>
     <packaging>pom</packaging>
-    <version>1.0-SNAPSHOT</version>
-    <name>Rettiwt - training project</name>
+    <version>1.0</version>
+
+    <name>Rettiwt - Parent</name>
     <description>This is a REST project based on Spring Framework and other different Spring
         subprojects such as Security, Web, REST and so on. At the frontend React is
         used.
     </description>
 
     <properties>
+        <!-- Project module versions -->
+        <rettiwt.dao.api.version>1.0</rettiwt.dao.api.version>
+        <rettiwt.dao.orm.impl.version>1.0</rettiwt.dao.orm.impl.version>
+        <rettiwt.service.version>1.0</rettiwt.service.version>
+        <rettiwt.web.version>1.0</rettiwt.web.version>
+
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <maven.version>3.6.0</maven.version>
         <maven.compiler.target>1.8</maven.compiler.target>
@@ -23,11 +30,12 @@
         <spring.version>5.1.8.RELEASE</spring.version>
         <slf4j.version>1.7.26</slf4j.version>
         <junit.version>5.5.0</junit.version>
+        <lombok.version>1.18.8</lombok.version>
     </properties>
 
     <modules>
         <module>rettiwt-dao-api</module>
-        <module>rettiwt-dao-impl</module>
+        <module>rettiwt-dao-orm-impl</module>
         <module>rettiwt-service</module>
         <module>rettiwt-web</module>
         <!-- <module>react-app</module> - React app will be here in future-->
@@ -35,11 +43,46 @@
 
     <dependencyManagement>
         <dependencies>
+            <!-- Modules -->
+            <dependency>
+                <groupId>com.training.rettiwt</groupId>
+                <artifactId>rettiwt-dao-api</artifactId>
+                <version>${rettiwt.dao.api.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.training.rettiwt</groupId>
+                <artifactId>rettiwt-dao-orm-impl</artifactId>
+                <version>${rettiwt.dao.orm.impl.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.training.rettiwt</groupId>
+                <artifactId>rettiwt-service</artifactId>
+                <version>${rettiwt.service.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.training.rettiwt</groupId>
+                <artifactId>rettiwt-web</artifactId>
+                <version>${rettiwt.web.version}</version>
+            </dependency>
+
             <!-- Spring -->
             <dependency>
                 <groupId>org.springframework</groupId>
                 <artifactId>spring-context</artifactId>
                 <version>${spring.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework</groupId>
+                <artifactId>spring-webmvc</artifactId>
+                <version>${spring.version}</version>
+            </dependency>
+
+            <!-- Lombok -->
+            <dependency>
+                <groupId>org.projectlombok</groupId>
+                <artifactId>lombok</artifactId>
+                <version>${lombok.version}</version>
+                <scope>provided</scope>
             </dependency>
 
             <!-- Logging -->
