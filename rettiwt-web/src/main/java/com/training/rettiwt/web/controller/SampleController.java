@@ -11,7 +11,7 @@ import java.util.Map;
 @RequestMapping("/")
 public class SampleController {
 
-    @GetMapping
+    @GetMapping("hello")
     public Map<String, String> greetings() {
         Map<String, String> response = new HashMap<>();
         response.put("greetings", "hello");
