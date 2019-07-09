@@ -1,15 +1,20 @@
 package com.training.rettiwt.web.controller;
 
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
-@Controller
+import java.util.HashMap;
+import java.util.Map;
+
+@RestController
 @RequestMapping("/")
 public class SampleController {
 
     @GetMapping
-    public String greetings() {
-        return "hello";
+    public Map<String, String> greetings() {
+        Map<String, String> response = new HashMap<>();
+        response.put("greetings", "hello");
+        return response;
     }
 }

@@ -23,10 +23,14 @@
         <rettiwt.service.version>1.0</rettiwt.service.version>
         <rettiwt.web.version>1.0</rettiwt.web.version>
 
+        <!-- Plugins -->
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <maven.version>3.6.0</maven.version>
         <maven.compiler.target>1.8</maven.compiler.target>
         <maven.compiler.source>1.8</maven.compiler.source>
+        <tomcat.plugin.version>2.2</tomcat.plugin.version>
+
+        <!-- Dependencies -->
         <spring.version>5.1.8.RELEASE</spring.version>
         <servlet.version>4.0.1</servlet.version>
         <slf4j.version>1.7.26</slf4j.version>
@@ -87,11 +91,11 @@
             </dependency>
 
             <!-- Logging -->
-            <dependency>
-                <groupId>org.slf4j</groupId>
-                <artifactId>slf4j-api</artifactId>
-                <version>${slf4j.version}</version>
-            </dependency>
+            <!--<dependency>-->
+                <!--<groupId>org.slf4j</groupId>-->
+                <!--<artifactId>slf4j-api</artifactId>-->
+                <!--<version>${slf4j.version}</version>-->
+            <!--</dependency>-->
 
             <!-- Unit testing -->
             <dependency>
@@ -124,6 +128,16 @@
                         <encoding>${project.build.sourceEncoding}</encoding>
                         <showWarnings>true</showWarnings>
                         <showDeprecation>true</showDeprecation>
+                    </configuration>
+                </plugin>
+                <plugin>
+                    <groupId>org.apache.tomcat.maven</groupId>
+                    <artifactId>tomcat7-maven-plugin</artifactId>
+                    <version>${tomcat.plugin.version}</version>
+                    <configuration>
+                        <url>http://localhost:8080/manager/text</url>
+                        <server>TomcatServer</server>
+                        <path>/</path>
                     </configuration>
                 </plugin>
             </plugins>
