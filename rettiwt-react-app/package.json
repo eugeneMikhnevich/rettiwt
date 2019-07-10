@@ -1,0 +1,19 @@
+{
+  "name": "rettiwt-react-app",
+  "version": "1.0.0",
+  "description": "Rettiwt React App",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/eugeneMikhnevich/rettiwt.git"
+  },
+  "author": "ME",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/eugeneMikhnevich/rettiwt/issues"
+  },
+  "homepage": "https://github.com/eugeneMikhnevich/rettiwt#readme"
+}

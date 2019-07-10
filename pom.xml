@@ -44,7 +44,8 @@
         <module>rettiwt-dao-orm-impl</module>
         <module>rettiwt-service</module>
         <module>rettiwt-web</module>
-        <!-- <module>react-app</module> - React app will be here in future-->
+        <!-- todo - Integration with rettiwt-react-app module -->
+        <module>rettiwt-react-app</module>
     </modules>
 
     <dependencyManagement>
@@ -147,6 +148,13 @@
                         <server>TomcatServer</server>
                         <path>/</path>
                     </configuration>
+                </plugin>
+                <plugin>
+                    <groupId>com.github.eirslett</groupId>
+                    <artifactId>frontend-maven-plugin</artifactId>
+                    <!-- Use the latest released version:
+                    https://repo1.maven.org/maven2/com/github/eirslett/frontend-maven-plugin/ -->
+                    <version>LATEST_VERSION</version>
                 </plugin>
             </plugins>
         </pluginManagement>
