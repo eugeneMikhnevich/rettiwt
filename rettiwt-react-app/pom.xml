@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0"
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0
+                             http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <parent>
         <artifactId>rettiwt-app</artifactId>
         <groupId>com.training.rettiwt</groupId>
@@ -10,59 +11,61 @@
     <modelVersion>4.0.0</modelVersion>
 
     <artifactId>rettiwt-react-app</artifactId>
-    <packaging>jar</packaging>
+    <packaging>pom</packaging>
 
-    <name>React.js Blank Project (from https://github.com/making/maven-reactjs-blank)</name>
+    <name>React Rettiwt App</name>
 
     <properties>
-        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <frontend.maven.plugin.version>1.7.6</frontend.maven.plugin.version>
+        <exec.maven.plugin.version>1.6.0</exec.maven.plugin.version>
+        <node.version>v10.16.0</node.version>
+        <npm.version>6.9.0</npm.version>
     </properties>
+
     <build>
         <plugins>
+            <!-- todo configure frontend and exec plugins -->
             <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-antrun-plugin</artifactId>
-                <version>1.8</version>
+                <groupId>com.github.eirslett</groupId>
+                <artifactId>frontend-maven-plugin</artifactId>
+                <version>${frontend.maven.plugin.version}</version>
                 <executions>
                     <execution>
-                        <id>gulp</id>
-                        <phase>generate-resources</phase>
+                        <id>install node and npm</id>
                         <goals>
-                            <goal>run</goal>
+                            <goal>install-node-and-npm</goal>
                         </goals>
                         <configuration>
-                            <target>
-                                <echo message="Gulp!"/>
-                                <exec executable="gulp">
-                                    <arg value="build"/>
-                                </exec>
-                            </target>
+                            <nodeVersion>${node.version}</nodeVersion>
+                            <npmVersion>${npm.version}</npmVersion>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>npm install</id>
+                        <goals>
+                            <goal>npm</goal>
+                        </goals>
+                        <configuration>
+                            <arguments>install</arguments>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>npm build</id>
+                        <goals>
+                            <goal>npm</goal>
+                        </goals>
+                        <configuration>
+                            <arguments>run build</arguments>
                         </configuration>
                     </execution>
                 </executions>
             </plugin>
             <plugin>
-                <artifactId>maven-resources-plugin</artifactId>
-                <executions>
-                    <execution>
-                        <id>copy-resources</id>
-                        <phase>generate-resources</phase>
-                        <goals>
-                            <goal>copy-resources</goal>
-                        </goals>
-                        <configuration>
-                            <outputDirectory>${basedir}/target/classes/META-INF/resources
-                            </outputDirectory>
-                            <resources>
-                                <resource>
-                                    <directory>dest</directory>
-                                    <filtering>false</filtering>
-                                </resource>
-                            </resources>
-                        </configuration>
-                    </execution>
-                </executions>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>exec-maven-plugin</artifactId>
+                <version>${exec.maven.plugin.version}</version>
             </plugin>
         </plugins>
     </build>
+
 </project>
