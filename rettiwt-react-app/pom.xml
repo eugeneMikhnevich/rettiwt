@@ -20,9 +20,34 @@
         <exec.maven.plugin.version>1.6.0</exec.maven.plugin.version>
         <node.version>v10.16.0</node.version>
         <npm.version>6.9.0</npm.version>
+
+        <!-- Paths for copying webpack build output and for clean goal -->
+        <webpack.output.dir>dist</webpack.output.dir>
     </properties>
 
+    <build>
+        <plugins>
+
+            <!-- For cleaning dist and WEB-INF directories -->
+            <plugin>
+                <artifactId>maven-clean-plugin</artifactId>
+                <configuration>
+                    <filesets>
+                        <fileset>
+                            <directory>${webpack.output.dir}</directory>
+                        </fileset>
+                    </filesets>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+
     <profiles>
+
+        <!-- If Node.js is not installed on the local machine on which the project is going to be
+             built then "-PlocalNode" profile should be used. This profile downloads Node.js and
+             NPM/Yarn (by default from "https://nodejs.org/dist/" but may be changed) and
+             installs it for this project locally. -->
         <profile>
             <id>localNode</id>
             <build>
@@ -65,6 +90,10 @@
                 </plugins>
             </build>
         </profile>
+
+        <!-- If Node.js is installed on the local machine on which the project is going to be
+             built then "-PglobalNode" profile should be used. This profile uses global installed
+             Node.js and NPM/Yarn -->
         <profile>
             <id>globalNode</id>
             <build>

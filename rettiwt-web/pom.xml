@@ -14,6 +14,13 @@
     <name>Rettiwt - Web</name>
     <packaging>war</packaging>
 
+    <properties>
+
+        <!-- Paths for copying webpack build output -->
+        <webpack.output.dir>../rettiwt-react-app/dist</webpack.output.dir>
+        <web-inf.dir>target/${artifactId}-${rettiwt.react.app.version}</web-inf.dir>
+    </properties>
+
     <dependencies>
         <!-- Module -->
         <dependency>
@@ -49,5 +56,60 @@
         <!--<artifactId>slf4j-api</artifactId>-->
         <!--</dependency>-->
     </dependencies>
+
+    <build>
+        <plugins>
+
+            <!-- For copying webpack output resources to WEB-INF folder -->
+            <plugin>
+                <artifactId>maven-resources-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <id>copy-resources</id>
+                        <phase>prepare-package</phase>
+                        <goals>
+                            <goal>copy-resources</goal>
+                        </goals>
+                        <configuration>
+                            <outputDirectory>${web-inf.dir}</outputDirectory>
+                            <resources>
+                                <resource>
+                                    <directory>${webpack.output.dir}</directory>
+                                    <excludes>
+                                        <exclude>*.js.map</exclude>
+                                    </excludes>
+                                </resource>
+                            </resources>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.tomcat.maven</groupId>
+                <artifactId>tomcat7-maven-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <id>tomcat undeploy</id>
+                        <phase>install</phase>
+                        <goals>
+                            <goal>undeploy</goal>
+                        </goals>
+                    </execution>
+                    <execution>
+                        <id>tomcat deploy</id>
+                        <phase>install</phase>
+                        <goals>
+                            <goal>deploy</goal>
+                        </goals>
+                    </execution>
+                </executions>
+                <configuration>
+                    <url>http://localhost:8080/manager/text</url>
+                    <server>TomcatServer</server>
+                    <path>/</path>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
 
 </project>

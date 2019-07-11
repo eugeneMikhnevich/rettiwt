@@ -21,6 +21,7 @@
         <rettiwt.dao.api.version>1.0</rettiwt.dao.api.version>
         <rettiwt.dao.orm.impl.version>1.0</rettiwt.dao.orm.impl.version>
         <rettiwt.service.version>1.0</rettiwt.service.version>
+        <rettiwt.react.app.version>1.0</rettiwt.react.app.version>
         <rettiwt.web.version>1.0</rettiwt.web.version>
 
         <!-- Plugins -->
@@ -29,6 +30,8 @@
         <maven.compiler.target>1.8</maven.compiler.target>
         <maven.compiler.source>1.8</maven.compiler.source>
         <tomcat.plugin.version>2.2</tomcat.plugin.version>
+        <resources.plugin.version>3.1.0</resources.plugin.version>
+        <clean.plugin.version>3.1.0</clean.plugin.version>
 
         <!-- Dependencies -->
         <spring.version>5.1.8.RELEASE</spring.version>
@@ -100,9 +103,9 @@
 
             <!-- Logging -->
             <!--<dependency>-->
-                <!--<groupId>org.slf4j</groupId>-->
-                <!--<artifactId>slf4j-api</artifactId>-->
-                <!--<version>${slf4j.version}</version>-->
+            <!--<groupId>org.slf4j</groupId>-->
+            <!--<artifactId>slf4j-api</artifactId>-->
+            <!--<version>${slf4j.version}</version>-->
             <!--</dependency>-->
 
             <!-- Unit testing -->
@@ -142,14 +145,16 @@
                     <groupId>org.apache.tomcat.maven</groupId>
                     <artifactId>tomcat7-maven-plugin</artifactId>
                     <version>${tomcat.plugin.version}</version>
-                    <configuration>
-                        <url>http://localhost:8080/manager/text</url>
-                        <server>TomcatServer</server>
-                        <path>/</path>
-                    </configuration>
+                </plugin>
+                <plugin>
+                    <artifactId>maven-resources-plugin</artifactId>
+                    <version>${resources.plugin.version}</version>
+                </plugin>
+                <plugin>
+                    <artifactId>maven-clean-plugin</artifactId>
+                    <version>${clean.plugin.version}</version>
                 </plugin>
             </plugins>
         </pluginManagement>
     </build>
-
 </project>
