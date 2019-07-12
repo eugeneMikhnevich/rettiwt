@@ -21,14 +21,14 @@
         <node.version>v10.16.0</node.version>
         <npm.version>6.9.0</npm.version>
 
-        <!-- Paths for copying webpack build output and for clean goal -->
+        <!-- Path for clean goal -->
         <webpack.output.dir>dist</webpack.output.dir>
     </properties>
 
     <build>
         <plugins>
 
-            <!-- For cleaning dist and WEB-INF directories -->
+            <!-- For cleaning dist directory -->
             <plugin>
                 <artifactId>maven-clean-plugin</artifactId>
                 <configuration>

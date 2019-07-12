@@ -16,4 +16,13 @@
     <mvc:default-servlet-handler/>
     <mvc:resources mapping="/resources/**" location="/resources/"/>
 
+    <bean id="jsonConverter" class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter" />
+    <bean class="org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter">
+        <property name="messageConverters">
+            <list>
+                <ref bean="jsonConverter"/>
+            </list>
+        </property>
+    </bean>
+
 </beans>

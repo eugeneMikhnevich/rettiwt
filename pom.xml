@@ -36,10 +36,10 @@
         <!-- Dependencies -->
         <spring.version>5.1.8.RELEASE</spring.version>
         <servlet.version>4.0.1</servlet.version>
-        <slf4j.version>1.7.26</slf4j.version>
         <junit.version>5.5.0</junit.version>
         <lombok.version>1.18.8</lombok.version>
         <jackson.version>2.9.9</jackson.version>
+        <logback.version>1.2.3</logback.version>
     </properties>
 
     <modules>
@@ -76,6 +76,8 @@
 
             <!-- Spring -->
             <dependency>
+                <!-- Doesn't need to exclude jcl dependency and plug in jcl-over-slf4j because it has spring-jcl
+                     dependency which already uses SLF4J API -->
                 <groupId>org.springframework</groupId>
                 <artifactId>spring-context</artifactId>
                 <version>${spring.version}</version>
@@ -102,11 +104,11 @@
             </dependency>
 
             <!-- Logging -->
-            <!--<dependency>-->
-            <!--<groupId>org.slf4j</groupId>-->
-            <!--<artifactId>slf4j-api</artifactId>-->
-            <!--<version>${slf4j.version}</version>-->
-            <!--</dependency>-->
+            <dependency>
+                <groupId>ch.qos.logback</groupId>
+                <artifactId>logback-classic</artifactId>
+                <version>${logback.version}</version>
+            </dependency>
 
             <!-- Unit testing -->
             <dependency>
@@ -123,7 +125,6 @@
                 <version>${servlet.version}</version>
                 <scope>provided</scope>
             </dependency>
-
         </dependencies>
     </dependencyManagement>
 

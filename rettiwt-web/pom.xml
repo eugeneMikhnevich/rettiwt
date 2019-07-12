@@ -18,7 +18,7 @@
 
         <!-- Paths for copying webpack build output -->
         <webpack.output.dir>../rettiwt-react-app/dist</webpack.output.dir>
-        <web-inf.dir>target/${artifactId}-${rettiwt.react.app.version}</web-inf.dir>
+        <webapp.dir>target/${artifactId}-${rettiwt.react.app.version}</webapp.dir>
     </properties>
 
     <dependencies>
@@ -51,16 +51,16 @@
         </dependency>
 
         <!-- Logging -->
-        <!--<dependency>-->
-        <!--<groupId>org.slf4j</groupId>-->
-        <!--<artifactId>slf4j-api</artifactId>-->
-        <!--</dependency>-->
+        <dependency>
+            <groupId>ch.qos.logback</groupId>
+            <artifactId>logback-classic</artifactId>
+        </dependency>
     </dependencies>
 
     <build>
         <plugins>
 
-            <!-- For copying webpack output resources to WEB-INF folder -->
+            <!-- For copying webpack output resources to webapp folder -->
             <plugin>
                 <artifactId>maven-resources-plugin</artifactId>
                 <executions>
@@ -71,7 +71,7 @@
                             <goal>copy-resources</goal>
                         </goals>
                         <configuration>
-                            <outputDirectory>${web-inf.dir}</outputDirectory>
+                            <outputDirectory>${webapp.dir}</outputDirectory>
                             <resources>
                                 <resource>
                                     <directory>${webpack.output.dir}</directory>
