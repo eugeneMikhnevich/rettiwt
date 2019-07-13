@@ -21,7 +21,7 @@
         </encoder>
     </appender>
 
-    <logger name="com.rettiwt" level="INFO">
+    <logger name="com.training.rettiwt" level="INFO">
         <appender-ref ref="CONSOLE"/>
         <appender-ref ref="INFO_LOGS_FILE"/>
     </logger>

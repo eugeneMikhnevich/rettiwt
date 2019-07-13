@@ -40,11 +40,12 @@
         <lombok.version>1.18.8</lombok.version>
         <jackson.version>2.9.9</jackson.version>
         <logback.version>1.2.3</logback.version>
+        <postgres.version>42.2.6</postgres.version>
+        <hibernate.version>5.4.3.Final</hibernate.version>
     </properties>
 
     <modules>
-        <module>rettiwt-dao-api</module>
-        <module>rettiwt-dao-orm-impl</module>
+        <module>rettiwt-dao</module>
         <module>rettiwt-service</module>
         <module>rettiwt-react-app</module>
         <module>rettiwt-web</module>
@@ -55,12 +56,7 @@
             <!-- Modules -->
             <dependency>
                 <groupId>com.training.rettiwt</groupId>
-                <artifactId>rettiwt-dao-api</artifactId>
-                <version>${rettiwt.dao.api.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>com.training.rettiwt</groupId>
-                <artifactId>rettiwt-dao-orm-impl</artifactId>
+                <artifactId>rettiwt-dao</artifactId>
                 <version>${rettiwt.dao.orm.impl.version}</version>
             </dependency>
             <dependency>
@@ -95,6 +91,27 @@
                 <version>${servlet.version}</version>
                 <scope>provided</scope>
             </dependency>
+
+            <!-- Postgresql -->
+            <dependency>
+                <groupId>org.postgresql</groupId>
+                <artifactId>postgresql</artifactId>
+                <version>${postgres.version}</version>
+            </dependency>
+
+            <!-- Hibernate -->
+            <dependency>
+                <groupId>org.hibernate</groupId>
+                <artifactId>hibernate-core</artifactId>
+                <version>${hibernate.version}</version>
+<!--                <exclusions>-->
+<!--                    <exclusion>-->
+<!--                        <groupId>org.jboss.logging</groupId>-->
+<!--                        <artifactId>jboss-logging</artifactId>-->
+<!--                    </exclusion>-->
+<!--                </exclusions>-->
+            </dependency>
+
         </dependencies>
     </dependencyManagement>
 
