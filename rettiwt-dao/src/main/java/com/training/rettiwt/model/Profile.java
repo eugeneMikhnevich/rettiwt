@@ -27,7 +27,6 @@ public class Profile extends BaseEntity {
     @Column(length = 100)
     private String location;
 
-    //todo
     @OneToOne
     private Account account;
 
