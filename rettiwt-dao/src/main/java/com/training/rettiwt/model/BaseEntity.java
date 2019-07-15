@@ -14,7 +14,6 @@ public abstract class BaseEntity {
     @Id
     @Access(value = AccessType.PROPERTY)
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(nullable = false, updatable = false)
     private Long id;
 
     @Column(name = "created_at", nullable = false, updatable = false)

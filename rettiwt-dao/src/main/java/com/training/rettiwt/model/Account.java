@@ -3,8 +3,7 @@ package com.training.rettiwt.model;
 import lombok.Getter;
 import lombok.Setter;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
+import javax.persistence.*;
 
 @Getter
 @Setter
@@ -23,4 +22,6 @@ public class Account extends BaseEntity {
     @Column(nullable = false)
     private Boolean deleted;
 
+    @OneToOne(fetch = FetchType.LAZY, mappedBy = "account", cascade = CascadeType.ALL)
+    private Profile profile;
 }

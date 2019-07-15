@@ -19,11 +19,10 @@ public class Post extends BaseEntity {
     @Column(nullable = false)
     private Integer dislikes;
 
-    //todo
     @ManyToOne(fetch = FetchType.LAZY)
     private Profile profile;
 
-    @OneToOne
+    @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @JoinColumn(name = "post_id")
     private Post post;
-
 }

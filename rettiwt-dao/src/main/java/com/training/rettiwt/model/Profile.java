@@ -26,17 +26,17 @@ public class Profile extends BaseEntity {
     @Column(length = 100)
     private String location;
 
-    @OneToOne
+    @OneToOne(fetch = FetchType.LAZY)
     @MapsId
     private Account account;
 
-    @ManyToMany
+    @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(name = "profile_2_subscriber",
             joinColumns = {@JoinColumn(name = "profile_id")},
             inverseJoinColumns = {@JoinColumn(name = "subscriber_id")})
     private List<Profile> subscriptions;
 
-    @ManyToMany
+    @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(name = "profile_2_subscriber",
             joinColumns = {@JoinColumn(name = "subscriber_id")},
             inverseJoinColumns = {@JoinColumn(name = "profile_id")})
@@ -45,5 +45,4 @@ public class Profile extends BaseEntity {
     @OneToMany(fetch = FetchType.LAZY)
     @JoinColumn(name = "profile_id")
     private List<Post> posts;
-
 }
