@@ -4,7 +4,7 @@ public interface BaseDao<Entity, Id> {
 
     void create(Entity entity);
 
-    Entity read(Id id);
+    Entity get(Id id);
 
     void update(Entity entity);
 

@@ -1,14 +1,13 @@
 package com.training.rettiwt.model;
 
-import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.ManyToMany;
-import javax.persistence.OneToOne;
+import javax.persistence.*;
 import java.util.List;
 
-@Data
+@Getter
+@Setter
 @Entity
 public class Profile extends BaseEntity {
 
@@ -28,12 +27,23 @@ public class Profile extends BaseEntity {
     private String location;
 
     @OneToOne
+    @MapsId
     private Account account;
 
     @ManyToMany
+    @JoinTable(name = "profile_2_subscriber",
+            joinColumns = {@JoinColumn(name = "profile_id")},
+            inverseJoinColumns = {@JoinColumn(name = "subscriber_id")})
     private List<Profile> subscriptions;
 
     @ManyToMany
+    @JoinTable(name = "profile_2_subscriber",
+            joinColumns = {@JoinColumn(name = "subscriber_id")},
+            inverseJoinColumns = {@JoinColumn(name = "profile_id")})
     private List<Profile> subscribers;
+
+    @OneToMany(fetch = FetchType.LAZY)
+    @JoinColumn(name = "profile_id")
+    private List<Post> posts;
 
 }

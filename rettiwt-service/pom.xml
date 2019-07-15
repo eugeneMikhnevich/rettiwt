@@ -20,6 +20,12 @@
             <groupId>com.training.rettiwt</groupId>
             <artifactId>rettiwt-dao</artifactId>
         </dependency>
+
+        <!-- Spring -->
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-orm</artifactId>
+        </dependency>
     </dependencies>
 
 </project>
