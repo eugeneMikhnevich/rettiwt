@@ -1,6 +1,6 @@
-package com.training.rettiwt.dao.api;
+package com.training.rettiwt.service.api;
 
-public interface BaseDao<Entity, Id> {
+public interface Service<Entity, Id> {
 
     void save(Entity entity);
 
@@ -9,5 +9,4 @@ public interface BaseDao<Entity, Id> {
     void update(Entity entity);
 
     void delete(Id id);
-
 }

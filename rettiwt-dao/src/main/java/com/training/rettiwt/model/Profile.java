@@ -26,7 +26,7 @@ public class Profile extends BaseEntity {
     @Column(length = 100)
     private String location;
 
-    @OneToOne(fetch = FetchType.LAZY)
+    @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @MapsId
     private Account account;
 
