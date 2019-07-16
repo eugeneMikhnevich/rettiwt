@@ -29,7 +29,6 @@ public class ProfileServiceImpl implements ProfileService {
     @Override
     public void save(final Profile profile) {
         LocalDateTime creationDateTime = now();
-
         profile.setCreatedAt(creationDateTime);
         profile.setUpdatedAt(creationDateTime);
         if (isEmpty(profile.getNickname())) {

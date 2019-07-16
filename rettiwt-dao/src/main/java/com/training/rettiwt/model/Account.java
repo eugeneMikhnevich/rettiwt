@@ -10,6 +10,12 @@ import javax.persistence.*;
 @Entity
 public class Account extends BaseEntity {
 
+    @Id
+    @Access(value = AccessType.PROPERTY)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "account_gen")
+    @SequenceGenerator(name = "account_gen", sequenceName = "account_id_seq")
+    private Long id;
+
     @Column(length = 100, nullable = false)
     private String email;
 

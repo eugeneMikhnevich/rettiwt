@@ -1,5 +1,6 @@
 package com.training.rettiwt.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -36,9 +37,14 @@ public class Profile {
     @Column(length = 100)
     private String location;
 
+    /**
+     * A working OneToOne relationship, but if you try to get account then profile will be also fetched.
+     * Even if fetch type lazy will be specified profile will be fetched
+     */
     @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinColumn(name = "id")
     @MapsId
+    @JsonIgnore
     private Account account;
 
     @ManyToMany(fetch = FetchType.LAZY)
