@@ -6,6 +6,10 @@ import com.training.rettiwt.service.api.AccountService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
+import static java.time.LocalDateTime.now;
+
 @Service
 public class AccountServiceImpl implements AccountService {
 
@@ -18,16 +22,25 @@ public class AccountServiceImpl implements AccountService {
 
     @Override
     public void save(final Account account) {
+        account.setCreatedAt(now());
+        account.setUpdatedAt(now());
         accountDao.save(account);
     }
 
     @Override
-    public Account get(final Long id) {
-        return accountDao.get(id);
+    public Account findById(final Long id) {
+        return accountDao.findById(id);
     }
 
     @Override
-    public void update(final Account account) {
+    public List<Account> findAll() {
+        return accountDao.findAll();
+    }
+
+    @Override
+    public void update(final Long id, final Account account) {
+        account.setId(id);
+        account.setUpdatedAt(now());
         accountDao.update(account);
     }
 

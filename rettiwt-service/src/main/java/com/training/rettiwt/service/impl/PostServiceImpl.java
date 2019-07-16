@@ -6,6 +6,10 @@ import com.training.rettiwt.service.api.PostService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
+import static java.time.LocalDateTime.now;
+
 @Service
 public class PostServiceImpl implements PostService {
 
@@ -18,16 +22,24 @@ public class PostServiceImpl implements PostService {
 
     @Override
     public void save(final Post post) {
+        post.setCreatedAt(now());
         postDao.save(post);
     }
 
     @Override
-    public Post get(final Long id) {
-        return postDao.get(id);
+    public Post findById(final Long id) {
+        return postDao.findById(id);
     }
 
     @Override
-    public void update(final Post post) {
+    public List<Post> findAll() {
+        return postDao.findAll();
+    }
+
+    @Override
+    public void update(final Long id, final Post post) {
+        post.setCreatedAt(now());
+        post.setUpdatedAt(now());
         postDao.update(post);
     }
 

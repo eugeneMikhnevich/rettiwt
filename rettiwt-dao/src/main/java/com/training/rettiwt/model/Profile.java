@@ -4,17 +4,27 @@ import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Getter
 @Setter
 @Entity
-public class Profile extends BaseEntity {
+public class Profile {
 
-    @Column(length = 100, nullable = false)
+    @Id
+    private Long id;
+
+    @Column(name = "created_at", nullable = false, updatable = false)
+    private LocalDateTime createdAt;
+
+    @Column(name = "updated_at", nullable = false)
+    private LocalDateTime updatedAt;
+
+    @Column(name = "first_name", length = 100, nullable = false)
     private String firstName;
 
-    @Column(length = 100, nullable = false)
+    @Column(name = "last_name", length = 100, nullable = false)
     private String lastName;
 
     @Column(length = 100, nullable = false)
@@ -27,6 +37,7 @@ public class Profile extends BaseEntity {
     private String location;
 
     @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @JoinColumn(name = "id")
     @MapsId
     private Account account;
 

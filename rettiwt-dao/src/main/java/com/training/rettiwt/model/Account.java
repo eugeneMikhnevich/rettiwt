@@ -19,9 +19,9 @@ public class Account extends BaseEntity {
     @Column(length = 30)
     private String phone;
 
-    @Column(nullable = false)
+    @Column
     private Boolean deleted;
 
-    @OneToOne(fetch = FetchType.LAZY, mappedBy = "account", cascade = CascadeType.ALL)
+    @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "account")
     private Profile profile;
 }

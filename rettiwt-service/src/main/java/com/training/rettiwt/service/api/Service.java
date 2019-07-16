@@ -1,12 +1,20 @@
 package com.training.rettiwt.service.api;
 
+import javax.transaction.Transactional;
+import java.util.List;
+
 public interface Service<Entity, Id> {
 
+    @Transactional
     void save(Entity entity);
 
-    Entity get(Id id);
+    Entity findById(Id id);
 
-    void update(Entity entity);
+    List<Entity> findAll();
 
+    @Transactional
+    void update(Id id, Entity entity);
+
+    @Transactional
     void delete(Id id);
 }

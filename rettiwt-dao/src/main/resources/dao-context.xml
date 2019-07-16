@@ -22,8 +22,9 @@
           p:password="${jdbc.password}"/>
 
     <bean id="entityManagerFactory" class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean"
-          p:persistenceUnitName="rettiwt-hibernate-persistence-unit"/>
+          p:persistenceUnitName="rettiwt-hibernate-persistence-unit"
+          p:dataSource-ref="dataSource"/>
 
-    <bean id="jpaTransactionManager" class="org.springframework.orm.jpa.JpaTransactionManager"
+    <bean id="transactionManager" class="org.springframework.orm.jpa.JpaTransactionManager"
           p:entityManagerFactory-ref="entityManagerFactory"/>
 </beans>
