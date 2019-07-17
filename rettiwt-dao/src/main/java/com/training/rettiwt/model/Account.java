@@ -12,8 +12,8 @@ public class Account extends BaseEntity {
 
     @Id
     @Access(value = AccessType.PROPERTY)
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "account_gen")
-    @SequenceGenerator(name = "account_gen", sequenceName = "account_id_seq")
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "account_generator")
+    @SequenceGenerator(name = "account_generator", sequenceName = "account_id_seq", allocationSize = 1)
     private Long id;
 
     @Column(length = 100, nullable = false)
@@ -28,6 +28,6 @@ public class Account extends BaseEntity {
     @Column
     private Boolean deleted;
 
-    @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "account")
+    @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "account", optional = false)
     private Profile profile;
 }

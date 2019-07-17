@@ -6,6 +6,7 @@ import com.training.rettiwt.service.api.AccountService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 import static java.time.LocalDateTime.now;
@@ -22,8 +23,9 @@ public class AccountServiceImpl implements AccountService {
 
     @Override
     public void save(final Account account) {
-        account.setCreatedAt(now());
-        account.setUpdatedAt(now());
+        LocalDateTime now = now();
+        account.setCreatedAt(now);
+        account.setUpdatedAt(now);
         accountDao.save(account);
     }
 
