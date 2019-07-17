@@ -25,9 +25,10 @@ public class PostController {
         this.postDtoConverter = postDtoConverter;
     }
 
-    @GetMapping("id")
-    public PostDto findById(@PathVariable(name = "id") Long id) {
-        Post post = postService.findById(id);
+    @GetMapping("{id}")
+    public PostDto findById(@PathVariable(name = "id") Long id,
+                            @RequestParam(name = "fetch", required = false) String fetch) {
+        Post post = "comments".equals(fetch) ? postService.findByIdWithComments(id) : postService.findById(id);
         return postDtoConverter.convertToDto(post);
     }
 

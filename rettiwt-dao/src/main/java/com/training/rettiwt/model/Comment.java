@@ -30,6 +30,5 @@ public class Comment extends BaseEntity {
     private Profile profile;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "post_id")
     private Post post;
 }

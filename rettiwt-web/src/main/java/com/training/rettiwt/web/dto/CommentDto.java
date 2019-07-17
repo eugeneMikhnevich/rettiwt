@@ -1,5 +1,6 @@
 package com.training.rettiwt.web.dto;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import lombok.Data;
 
 import java.time.LocalDateTime;
@@ -14,5 +15,7 @@ public class CommentDto {
     private Integer likes;
     private Integer dislikes;
     private ProfileDto profile;
+
+    @JsonBackReference
     private PostDto post;
 }

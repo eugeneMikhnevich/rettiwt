@@ -1,5 +1,6 @@
 package com.training.rettiwt.web.converter;
 
+import com.training.rettiwt.model.Comment;
 import com.training.rettiwt.model.Post;
 import com.training.rettiwt.web.dto.CommentDto;
 import com.training.rettiwt.web.dto.PostDto;
@@ -37,7 +38,7 @@ public class PostDtoConverter {
         postDto.setProfile(profileDtoConverter.convertToDto(post.getProfile()));
         try {
             List<CommentDto> comments = post.getComments().stream()
-                    .map(commentDtoConverter::convertToDto)
+                    .map(comment -> convertCommentToDto(comment, postDto))
                     .collect(toList());
             postDto.setComments(comments);
         } catch (LazyInitializationException e) {
@@ -56,5 +57,18 @@ public class PostDtoConverter {
         post.setDislikes(postDto.getDislikes());
         post.setProfile(profileDtoConverter.convertFromDto(postDto.getProfile()));
         return post;
+    }
+
+    private CommentDto convertCommentToDto(Comment comment, PostDto postDto) {
+        CommentDto commentDto = new CommentDto();
+        commentDto.setId(comment.getId());
+        commentDto.setCreatedAt(comment.getCreatedAt());
+        commentDto.setUpdatedAt(comment.getUpdatedAt());
+        commentDto.setMessage(comment.getMessage());
+        commentDto.setLikes(comment.getLikes());
+        commentDto.setDislikes(comment.getDislikes());
+        commentDto.setProfile(profileDtoConverter.convertToDto(comment.getProfile()));
+        commentDto.setPost(postDto);
+        return commentDto;
     }
 }

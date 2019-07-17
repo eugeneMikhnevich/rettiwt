@@ -32,6 +32,7 @@
         <tomcat.plugin.version>2.2</tomcat.plugin.version>
         <resources.plugin.version>3.1.0</resources.plugin.version>
         <clean.plugin.version>3.1.0</clean.plugin.version>
+        <processor.plugin.version>3.3.3</processor.plugin.version>
 
         <!-- Dependencies -->
         <spring.version>5.1.8.RELEASE</spring.version>
@@ -103,6 +104,11 @@
                 <artifactId>hibernate-core</artifactId>
                 <version>${hibernate.version}</version>
             </dependency>
+            <dependency>
+                <groupId>org.hibernate</groupId>
+                <artifactId>hibernate-jpamodelgen</artifactId>
+                <version>${hibernate.version}</version>
+            </dependency>
         </dependencies>
     </dependencyManagement>
 
@@ -145,6 +151,11 @@
             <artifactId>jackson-databind</artifactId>
             <version>${jackson.version}</version>
         </dependency>
+        <dependency>
+            <groupId>com.fasterxml.jackson.datatype</groupId>
+            <artifactId>jackson-datatype-jsr310</artifactId>
+            <version>${jackson.version}</version>
+        </dependency>
     </dependencies>
 
     <build>
@@ -162,6 +173,11 @@
                 <plugin>
                     <artifactId>maven-clean-plugin</artifactId>
                     <version>${clean.plugin.version}</version>
+                </plugin>
+                <plugin>
+                    <groupId>org.bsc.maven</groupId>
+                    <artifactId>maven-processor-plugin</artifactId>
+                    <version>${processor.plugin.version}</version>
                 </plugin>
             </plugins>
         </pluginManagement>

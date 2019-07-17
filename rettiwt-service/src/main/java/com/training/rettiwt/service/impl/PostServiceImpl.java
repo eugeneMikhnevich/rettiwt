@@ -47,4 +47,9 @@ public class PostServiceImpl implements PostService {
     public void delete(final Long id) {
         postDao.delete(id);
     }
+
+    @Override
+    public Post findByIdWithComments(final Long id) {
+        return postDao.findByIdWithComments(id);
+    }
 }

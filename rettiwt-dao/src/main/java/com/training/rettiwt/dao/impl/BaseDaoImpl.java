@@ -14,14 +14,15 @@ import java.util.List;
 public abstract class BaseDaoImpl<Entity, Id> implements BaseDao<Entity, Id> {
 
     @PersistenceContext
-    private EntityManager entityManager;
-
-    @Getter
+    protected EntityManager entityManager;
     private Class<Entity> entityClass;
-
 
     BaseDaoImpl(final Class<Entity> entityClass) {
         this.entityClass = entityClass;
+    }
+
+    public Class<Entity> getEntityClass() {
+        return entityClass;
     }
 
     @Override

@@ -30,6 +30,6 @@ public class Post extends BaseEntity {
     @JoinColumn(name = "profile_id")
     private Profile profile;
 
-    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "post")
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "post")
     private List<Comment> comments;
 }
