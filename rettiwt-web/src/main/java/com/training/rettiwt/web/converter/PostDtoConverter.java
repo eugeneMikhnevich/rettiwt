@@ -2,8 +2,10 @@ package com.training.rettiwt.web.converter;
 
 import com.training.rettiwt.model.Comment;
 import com.training.rettiwt.model.Post;
+import com.training.rettiwt.model.Profile;
 import com.training.rettiwt.web.dto.CommentDto;
 import com.training.rettiwt.web.dto.PostDto;
+import com.training.rettiwt.web.dto.ProfileDto;
 import lombok.extern.slf4j.Slf4j;
 import org.hibernate.LazyInitializationException;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -55,7 +57,10 @@ public class PostDtoConverter {
         post.setMessage(postDto.getMessage());
         post.setLikes(postDto.getLikes());
         post.setDislikes(postDto.getDislikes());
-        post.setProfile(profileDtoConverter.convertFromDto(postDto.getProfile()));
+        ProfileDto profileDto = postDto.getProfile();
+        if (profileDto != null) {
+            post.setProfile(profileDtoConverter.convertFromDto(profileDto));
+        }
         return post;
     }
 
@@ -67,7 +72,10 @@ public class PostDtoConverter {
         commentDto.setMessage(comment.getMessage());
         commentDto.setLikes(comment.getLikes());
         commentDto.setDislikes(comment.getDislikes());
-        commentDto.setProfile(profileDtoConverter.convertToDto(comment.getProfile()));
+        Profile profileDto = comment.getProfile();
+        if (profileDto != null) {
+            commentDto.setProfile(profileDtoConverter.convertToDto(profileDto));
+        }
         commentDto.setPost(postDto);
         return commentDto;
     }

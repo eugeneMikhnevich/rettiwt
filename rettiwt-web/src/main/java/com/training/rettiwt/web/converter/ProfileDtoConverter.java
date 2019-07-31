@@ -48,7 +48,10 @@ public class ProfileDtoConverter {
         profile.setNickname(profileDto.getNickname());
         profile.setDescription(profileDto.getDescription());
         profile.setLocation(profileDto.getLocation());
-        profile.setAccount(accountDtoConverter.convertFromDto(profileDto.getAccount()));
+        AccountDto accountDto = profileDto.getAccount();
+        if (accountDto != null) {
+            profile.setAccount(accountDtoConverter.convertFromDto(accountDto));
+        }
         return profile;
     }
 }

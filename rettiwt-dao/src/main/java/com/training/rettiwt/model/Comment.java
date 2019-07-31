@@ -12,8 +12,7 @@ public class Comment extends BaseEntity {
 
     @Id
     @Access(value = AccessType.PROPERTY)
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "comment_generator")
-    @SequenceGenerator(name = "comment_generator", sequenceName = "comment_id_seq", allocationSize = 1)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @Column(length = 350, nullable = false)

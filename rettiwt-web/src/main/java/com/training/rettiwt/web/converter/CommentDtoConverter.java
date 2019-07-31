@@ -3,6 +3,8 @@ package com.training.rettiwt.web.converter;
 import com.training.rettiwt.model.Comment;
 import com.training.rettiwt.model.Post;
 import com.training.rettiwt.web.dto.CommentDto;
+import com.training.rettiwt.web.dto.PostDto;
+import com.training.rettiwt.web.dto.ProfileDto;
 import lombok.extern.slf4j.Slf4j;
 import org.hibernate.LazyInitializationException;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -51,8 +53,14 @@ public class CommentDtoConverter {
         comment.setMessage(commentDto.getMessage());
         comment.setLikes(commentDto.getLikes());
         comment.setDislikes(commentDto.getDislikes());
-        comment.setProfile(profileDtoConverter.convertFromDto(commentDto.getProfile()));
-        comment.setPost(postDtoConverter.convertFromDto(commentDto.getPost()));
+        ProfileDto profileDto = commentDto.getProfile();
+        if (profileDto != null) {
+            comment.setProfile(profileDtoConverter.convertFromDto(profileDto));
+        }
+        PostDto postDto = commentDto.getPost();
+        if (postDto != null) {
+            comment.setPost(postDtoConverter.convertFromDto(postDto));
+        }
         return comment;
     }
 }

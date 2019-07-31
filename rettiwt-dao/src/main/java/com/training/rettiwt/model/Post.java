@@ -13,8 +13,7 @@ public class Post extends BaseEntity {
 
     @Id
     @Access(value = AccessType.PROPERTY)
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "post_generator")
-    @SequenceGenerator(name = "post_generator", sequenceName = "post_id_seq", allocationSize = 1)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @Column(length = 350, nullable = false)

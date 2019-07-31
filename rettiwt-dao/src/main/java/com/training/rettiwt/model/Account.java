@@ -12,8 +12,7 @@ public class Account extends BaseEntity {
 
     @Id
     @Access(value = AccessType.PROPERTY)
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "account_generator")
-    @SequenceGenerator(name = "account_generator", sequenceName = "account_id_seq", allocationSize = 1)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @Column(length = 100, nullable = false)
