@@ -41,6 +41,7 @@ public class AccountController {
     @PostMapping
     public void save(@RequestBody AccountDto accountDto) {
         Account account = accountDtoConverter.convertFromDto(accountDto);
+        System.out.println("hello");
         accountService.save(account);
     }
 

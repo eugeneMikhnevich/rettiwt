@@ -41,6 +41,7 @@ public class CommentController {
     @PostMapping
     public void save(@RequestBody CommentDto commentDto) {
         Comment comment = commentDtoConverter.convertFromDto(commentDto);
+        System.out.println("hello");
         commentService.save(comment);
     }
 
